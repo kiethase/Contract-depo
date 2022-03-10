@@ -10,14 +10,13 @@ impl FungibleTokenReceiver for Contract{
     #[allow(unreachable_code)]
     fn ft_on_transfer(
         &mut self,
-        receiver_id: ValidAccountId,
+        sender_id: ValidAccountId,
         amount: U128,
         msg: String,
     ) -> PromiseOrValue<U128> {
         let token_in = env::predecessor_account_id();
         assert!(msg.is_empty(),"Msg much empty on deposit action!!");
-        // self.()
-
+        self.internal_save_transfer_information(&sender_id.to_string(), &token_in, amount.into());
         PromiseOrValue::Value(U128(0))
     }
 }

@@ -76,6 +76,7 @@ impl Contract{
             whitelistied_tokens: UnorderedSet::new(StorageKey::Whitelist),
         }
     }
+    
     pub fn get_deposits(&self, account_id: ValidAccountId) -> HashMap<AccountId, U128> {
         let wrapped_account = self.internal_get_account(account_id.as_ref());
         if let Some(account) = wrapped_account {
